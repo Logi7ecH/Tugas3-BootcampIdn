@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bootcamp.tugas3_bootcampidn.databinding.ItemRowNewsBinding
 import com.bumptech.glide.Glide
+import java.time.format.DateTimeFormatter
 
 class NewsAdapter: RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     private var newsData: List<ArticlesItem> = listOf()
@@ -15,9 +16,10 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
         private val binding = ItemRowNewsBinding.bind(view)
         fun bind(news: ArticlesItem) {
             binding.apply {
+                val date = news.publishedAt?.substring(0,10)
                 tvJudul.text = news.title
                 tvPenulis.text = news.author
-                tvTanggalPosting.text = news.publishedAt
+                tvTanggalPosting.text = date
 
                 Glide.with(imgNews)
                     .load(news.urlToImage)
